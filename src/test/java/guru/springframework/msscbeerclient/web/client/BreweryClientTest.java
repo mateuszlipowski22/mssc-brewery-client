@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.net.URI;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class BreweryClientTest {
@@ -23,7 +23,7 @@ class BreweryClientTest {
     }
 
     @Test
-    void testsaveNewBeer(){
+    void testSaveNewBeer(){
         //given
         BeerDto beerDto = BeerDto.builder().beerName("New beer").build();
 
@@ -32,5 +32,21 @@ class BreweryClientTest {
         assertNotNull(uri);
 
         System.out.println(uri.toString());
+    }
+
+    @Test
+    void testUpdateBeer(){
+        //given
+        BeerDto beerDto = BeerDto.builder().beerName("New beer").build();
+
+        breweryClient.updateBeer(UUID.randomUUID(),beerDto);
+
+    }
+
+    @Test
+    void testDeleteBeer() throws Exception {
+
+        breweryClient.deleteBeer(UUID.randomUUID());
+
     }
 }
